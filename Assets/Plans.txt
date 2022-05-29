@@ -9,3 +9,7 @@ Human world is grim and dull, humans are mostly uninterested in speaking as they
 Yokai can't hurt you in Yokai world, but can in human world
 
 Yokai world is Fantasy genre, human world is Horror/Grimdark
+
+Art style uses a watercolor shader, with lots of browns, greys, and blacks in a rainy human world, contrasting with the bright and sunny Yokai world
+
+Main Antagonist is a Yokai referred to only as the Defiler.
