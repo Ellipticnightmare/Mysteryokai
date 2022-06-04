@@ -13,3 +13,21 @@ Yokai world is Fantasy genre, human world is Horror/Grimdark
 Art style uses a watercolor shader, with lots of browns, greys, and blacks in a rainy human world, contrasting with the bright and sunny Yokai world
 
 Main Antagonist is a Yokai referred to only as the Defiler.
+
+Defiler storyline takes place over the entire game, and is constant in each run, consisting of encounters, knowledge gain, item gain, etc
+
+Players solve other Yokai mysteries to gain money, which they use to purchase items, unlock new tools/features, etc
+
+Players can also gain money by doing other small quests, such as basic fetch quests, item collecting, etc
+
+These other mysteries (apart from a few story-based ones), are all semi-random, relying on the player doing their own research and investigation to figure things out
+
+Like Phasmophobia, players must find clues and narrow down the types of Yokai they encounter and combat
+
+Unlike Phasmophobia, players will have to build their own journal entirely.  They won't have anything premade or written for them, apart from story-based events, and will instead have to build their own codex, write their own notes, etc, fully pushing them into the "Detective" theme
+
+Also unlike Phasmophobia, player will not be able to lose these quests.  Instead, they will simply fail to capture/stop the Yokai, and can come back after more research and preparation
+
+Quests can be located at the Fortune Teller, who can also give players a hint to what their new opponent is.  New Quests are free while the player is below a certain threshold of Cases, and cost in-game money to unlock additional ones
+
+NO MICROTRANSACTIONS
