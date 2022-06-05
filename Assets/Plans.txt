@@ -31,3 +31,5 @@ Also unlike Phasmophobia, player will not be able to lose these quests.  Instead
 Quests can be located at the Fortune Teller, who can also give players a hint to what their new opponent is.  New Quests are free while the player is below a certain threshold of Cases, and cost in-game money to unlock additional ones
 
 NO MICROTRANSACTIONS
+
+Survival mechanics don't punish the player overly, instead functioning on a series of buffs and debuffs.  For example, consuming food causes you to become Sated for a period of time (along with other buffs that food may grant), letting you regenerate health slightly faster and lose stamina slightly slower.  These mechanics should be avoidable by players who don't wish to use them, but still serve a purpose for players who wish to have fun with them, whether that be for messing around with mechanics (we should plot out some broken things for fun), for roleplay purposes, etc

@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     KeyBindSave curBinding;
     List<KeyBindData> keybindsMain = new List<KeyBindData>();
     bool isReadingForKey = false;
-    string curKeyToBind;
+    string curKeyToBind, curChapter;
     Button curKeyBind;
     #endregion
     #endregion
@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
         mainCam.enabled = true;
         RanStart = true;
         tMod = 1;
+        curChapter = SceneManager.GetActiveScene().name;
     }
     private void Update()
     {
@@ -171,6 +172,11 @@ public class GameManager : MonoBehaviour
     #endregion
     #endregion
     #region DataManagement
+    public void KickToMenuError(string value)
+    {
+        PlayerPrefs.SetString("ErrorCode", value);
+        SceneManager.LoadScene("MainMenu");
+    }
     #region Saving/Loading
     public void ReadData()
     {
@@ -194,11 +200,7 @@ public class GameManager : MonoBehaviour
             pages = check.savePages;
         }
         else
-        {
-            SceneManager.LoadScene("MainMenu");
-            PlayerPrefs.SetString("ErrorCode", "corruptUser");
-            return;
-        }
+            KickToMenuError("corruptUser");
 
         BinaryFormatter kF = new BinaryFormatter();
         file = File.Open(keyDirectory, FileMode.Open);
@@ -221,6 +223,7 @@ public class GameManager : MonoBehaviour
         curPlayer.timePlayed = curPlayer.timePlayed + Time.timeSinceLevelLoad;
         curPlayer.savePages = pages;
         curPlayer.playerPosition = player.transform.position;
+        curPlayer.chapter = curChapter;
         curPlayer.playerRotation = player.transform.rotation;
         bf.Serialize(file, curPlayer);
         file.Close();
@@ -305,9 +308,10 @@ public class PlayerData
     public SVector3 playerPosition;
     public SQuat playerRotation;
     public double timePlayed;
-    public string userName;
+    public string userName, chapter;
     public int money, maxHealth, maxStamina, health, stamina;
     public List<JournalPage> savePages = new List<JournalPage>();
+    public float moveSpeed;
 }
 [System.Serializable]
 public class KeyBindSave
