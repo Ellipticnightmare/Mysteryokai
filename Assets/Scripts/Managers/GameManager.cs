@@ -23,20 +23,18 @@ public class GameManager : MonoBehaviour
     #region Public/Exposed
     [Header("Data Management")]
     public int pageStringCount = 20;
+    public List<JournalChapter> chaps = new List<JournalChapter>();
     public List<JournalPage> pages = new List<JournalPage>();
-    public GameObject keybindUI;
-    public Button[] keyBindButtons;
     #endregion
     #region Private/Hidden
-    int pageShow;
+    int pageShow, chapShow;
     string saveDirectory, keyDirectory;
     PlayerManager player;
     PlayerData curPlayer;
     KeyBindSave curBinding;
     List<KeyBindData> keybindsMain = new List<KeyBindData>();
     bool isReadingForKey = false;
-    string curKeyToBind, curChapter;
-    Button curKeyBind;
+    string curKeyToBind, curLocation;
     #endregion
     #endregion
     #region UI
@@ -44,9 +42,11 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     public InputField leftPage, rightPage;
     public Text leftPageNum, rightPageNum;
-    public GameObject pauseMenu, saveUI;
+    public GameObject pauseMenu, saveUI, journalChapUI, journalPageUI, keybindUI;
+    public Button[] keyBindButtons;
     #endregion
     #region Private/Hidden
+    Button curKeyBind;
     #endregion
     #endregion
     #endregion
@@ -68,7 +68,10 @@ public class GameManager : MonoBehaviour
         mainCam.enabled = true;
         RanStart = true;
         tMod = 1;
-        curChapter = SceneManager.GetActiveScene().name;
+        curLocation = SceneManager.GetActiveScene().name;
+        EnterNewPageJump("0");
+        MoveToNewChap(0);
+        UpdateChapterUI();
     }
     private void Update()
     {
@@ -78,7 +81,7 @@ public class GameManager : MonoBehaviour
             rightPage.text = "";
             leftPageNum.text = "";
             rightPageNum.text = "";
-            if (pages.Count > 1)
+            if (chaps.Count > 1)
             {
                 leftPage.text = pages[pageShow].myPage;
                 rightPage.text = pages[pageShow + 1].myPage;
@@ -125,6 +128,7 @@ public class GameManager : MonoBehaviour
     #endregion
     #region GamePlay
     #region JournalManagement
+    #region PageManagement
     public void PageUp()
     {
         if (pageShow + 2 < pages.Count)
@@ -160,6 +164,61 @@ public class GameManager : MonoBehaviour
             pages.Add(newPage2);
         }
     }
+    public void UpdatePagesUI(string value)
+    {
+        for (int i = 0; i < chaps.Count; i++)
+        {
+            if (chaps[i].chapterTitle == value)
+                MoveToNewChap(i);
+        }
+    }
+    #endregion
+    #region ChapterManagement
+    public void ChapUp()
+    {
+        if (chapShow + 1 < chaps.Count)
+            chapShow++;
+    }
+    public void ChapDown()
+    {
+        if (chapShow > 0)
+            chapShow--;
+    }
+    public void MoveToNewChap(int value)
+    {
+        chapShow = value;
+        pages.Clear();
+        pages.AddRange(chaps[chapShow].pages);
+        pageShow = 0;
+    }
+    public void CreateNewJournal(string value)
+    {
+        JournalChapter newChap = new JournalChapter();
+        List<JournalPage> newList = new List<JournalPage>();
+        newList.Add(new JournalPage());
+        newList.Add(new JournalPage());
+        newChap.pages = newList.ToArray();
+        newChap.chapterTitle = value;
+        chaps.Add(newChap);
+        chapShow = chaps.Count - 1;
+    }
+    public void UpdateChapterUI()
+    {
+
+    }
+    #endregion
+    #region UIManagement
+    public void OpenChapterUI()
+    {
+        journalChapUI.SetActive(true);
+        journalPageUI.SetActive(false);
+    }
+    public void OpenPagesUI()
+    {
+        journalChapUI.SetActive(false);
+        journalPageUI.SetActive(true);
+    }
+    #endregion
     #endregion
     #region Quality Of Life
     public void togglePause()
@@ -197,7 +256,7 @@ public class GameManager : MonoBehaviour
             player.maxStamina = check.maxStamina;
             player.health = check.health;
             player.stamina = check.stamina / check.maxStamina >= .9f ? player.maxStamina : check.stamina;
-            pages = check.savePages;
+            chaps = check.saveChaps;
         }
         else
             KickToMenuError("corruptUser");
@@ -207,6 +266,7 @@ public class GameManager : MonoBehaviour
         KeyBindSave checkKey = (KeyBindSave)kF.Deserialize(file);
         keybindsMain.AddRange(checkKey.savedBindings);
         UpdateKeyBindUI();
+        RunStart();
     }
     public void SaveData(bool returnToMenu)
     {
@@ -221,9 +281,9 @@ public class GameManager : MonoBehaviour
         curPlayer.health = player.health;
         curPlayer.stamina = player.stamina;
         curPlayer.timePlayed = curPlayer.timePlayed + Time.timeSinceLevelLoad;
-        curPlayer.savePages = pages;
+        curPlayer.saveChaps = chaps;
         curPlayer.playerPosition = player.transform.position;
-        curPlayer.chapter = curChapter;
+        curPlayer.chapter = curLocation;
         curPlayer.playerRotation = player.transform.rotation;
         bf.Serialize(file, curPlayer);
         file.Close();
@@ -300,7 +360,14 @@ public class GameManager : MonoBehaviour
 [System.Serializable]
 public class JournalPage
 {
+    [TextArea(3,5)]
     public string myPage;
+}
+[System.Serializable]
+public class JournalChapter
+{
+    public string chapterTitle;
+    public JournalPage[] pages;
 }
 [System.Serializable]
 public class PlayerData
@@ -310,7 +377,7 @@ public class PlayerData
     public double timePlayed;
     public string userName, chapter;
     public int money, maxHealth, maxStamina, health, stamina;
-    public List<JournalPage> savePages = new List<JournalPage>();
+    public List<JournalChapter> saveChaps = new List<JournalChapter>();
     public float moveSpeed;
 }
 [System.Serializable]

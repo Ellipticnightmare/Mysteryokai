@@ -1778,6 +1778,55 @@ MonoBehaviour:
   defaultStartingPos: {x: 0, y: 0, z: 0}
   defaultStartingRot: {x: 0, y: 0, z: 0, w: 0}
   defaultKeyBindings: []
+  startingChapter:
+    chapterTitle: Tips and Tricks
+    pages:
+    - myPage: Make sure to take as many notes as possible, and with all the detail
+        you require.  Your Journal has no maximum number of pages or chapters, so
+        it should be fully taken advantage of.  It's also your most powerful tool,
+        so ensure you make the best use possible of it!
+    - myPage: Money isn't finite in this game, so don't worry so much about making
+        bad purchases.  If you need more, you can always visit the Fortune Teller
+        for new Cases, or talk to most NPCs to find some odd jobs for some extra
+        cash.  You can always have up to 3 Cases before the Fortune Teller will start
+        charging you for new Readings.
+    - myPage: Yokai, for the most part, have a semi-randomly generated set of traits. 
+        However, there are a few details that will remain constant for each Yokai
+        type, so make sure you pay careful attention when doing research and writing
+        your Journal.
+    - myPage: When in doubt, the Fortune Teller will be able to tell you one of the
+        traits from your oldest current Yokai Case, for a fee.  This can be very
+        useful when facing a brand-new Yokai type, to help you know what to research
+        and watch out for.
+    - myPage: Despite it's strange appearances, the Yokai world is completely safe
+        for humans.  Even if you were to find an enemy, the Veil Treaty will prevent
+        any harm from coming to you, so you don't need to worry about having low
+        health, or otherwise being in danger.  However, this protection won't last
+        in the Human world.
+    - myPage: As you play the game, you'll upgrade your Resonance level, letting
+        you use more mystical items and skills.  These are often more expensive,
+        so use them wisely, but they can give you a massive advantage on your Cases. 
+        If your Resonance is too low, magical items will either fail to work, or
+        may actively work against you, so you should be careful with what you purchase.
+    - myPage: Make sure not to neglect your health.  While you won't need to do things
+        like eat, sleep, or take care of your character like you would in a survival
+        game, doing so will give your character some extra buffs or bonuses that
+        can prove very helpful in your experience.  For example, eating food can
+        give you the Sated buff, which regenerates Health faster and reduces Stamina
+        lower.
+    - myPage: Leave no stone unturned. Not only are there lots of secrets and easter
+        eggs to discover, you'll never know when an NPC might be able to drop something
+        worth eavesdropping about, or perhaps give you a new Quest, Item, or even
+        unlock an entirely new area!  This is a world jam-packed with details and
+        content, so make sure to explore as much as possible
+    - myPage: Despite a theoretical infinite number of Cases, you won't be able to
+        have more than one Case in each possible location.  There are a lot more
+        locations than you may originally think, but don't worry - the game will
+        prevent you from gaining new Cases if this situation should arise.  And of
+        course, it also means you won't have to worry about fighting more than one
+        Yokai at a time.
+    - myPage: 'There''s a lot of content in this game, far more than we can talk
+        about here.  Make sure to check out our wiki at: INSERT WIKI LINK HERE'
 --- !u!1 &622944442
 GameObject:
   m_ObjectHideFlags: 0
@@ -2686,6 +2735,9 @@ MonoBehaviour:
   defaultStartingPos: {x: 0, y: 0, z: 0}
   defaultStartingRot: {x: 0, y: 0, z: 0, w: 0}
   defaultKeyBindings: []
+  startingChapter:
+    chapterTitle: 
+    pages: []
 --- !u!1 &966310038
 GameObject:
   m_ObjectHideFlags: 0

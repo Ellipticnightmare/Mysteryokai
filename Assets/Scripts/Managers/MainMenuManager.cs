@@ -21,6 +21,7 @@ public class MainMenuManager : MonoBehaviour
     public Vector3 defaultStartingPos;
     public Quaternion defaultStartingRot;
     public List<KeyBindData> defaultKeyBindings = new List<KeyBindData>();
+    public JournalChapter startingChapter;
     List<string> saveNames = new List<string>();
     int startMaxHealth, startMaxStamina, startHealth, startStamina, startMoney;
     float startSpeed;
