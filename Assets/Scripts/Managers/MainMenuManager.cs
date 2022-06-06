@@ -28,8 +28,8 @@ public class MainMenuManager : MonoBehaviour
     string selectedMod;
     private void Awake()
     {
-        if (!Directory.Exists(Application.persistentDataPath + "/saves/"))
-            Directory.CreateDirectory(Application.persistentDataPath + "/saves/");
+        if (!Directory.Exists(Application.persistentDataPath + "/saves/player/"))
+            Directory.CreateDirectory(Application.persistentDataPath + "/saves/player/");
         if (!Directory.Exists(Application.persistentDataPath + "/data/"))
             Directory.CreateDirectory(Application.persistentDataPath + "/data/");
         if (!Directory.Exists(Application.persistentDataPath + "/data/keys/"))
@@ -43,6 +43,8 @@ public class MainMenuManager : MonoBehaviour
             Directory.CreateDirectory(Application.persistentDataPath + "/mods/");
             CreateSampleMod();
         }
+        if (!Directory.Exists(Application.persistentDataPath + "/saves/world/"))
+            Directory.CreateDirectory(Application.persistentDataPath + "/saves/world/");
     }
     private void Start()
     {

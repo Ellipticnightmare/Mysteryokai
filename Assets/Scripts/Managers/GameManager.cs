@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     #region Private/Hidden
     bool RanStart;
     public int tMod;
+    public static GameManager instance;
     #endregion
     #endregion
     #region Data Management
@@ -49,11 +50,19 @@ public class GameManager : MonoBehaviour
     Button curKeyBind;
     #endregion
     #endregion
+    #region Case Management
+    #region Public/Exposed
+    public YokaiDatabase yokai;
+    #endregion
+    #region Private/Hidden
+    #endregion
+    #endregion
     #endregion
     #region Functions
     #region Base/Generic
     private void Awake()
     {
+        instance = this;
         leftPage.characterLimit = pageStringCount;
         rightPage.characterLimit = pageStringCount;
         mainCam.enabled = false;
@@ -360,7 +369,7 @@ public class GameManager : MonoBehaviour
 [System.Serializable]
 public class JournalPage
 {
-    [TextArea(3,5)]
+    [TextArea(3, 5)]
     public string myPage;
 }
 [System.Serializable]
@@ -389,6 +398,22 @@ public class KeyBindSave
 public class KeyBindData
 {
     public string keyBindName, keyBindData;
+}
+[System.Serializable]
+public class BuildingRegion
+{
+    public string roomName;
+    public BoxCollider room;
+    public RoomPoint[] roomPoints;
+}
+[System.Serializable]
+public class BuildingSaveData
+{
+    public BuildingRegion[] savedRegions;
+    public YokaiData savedData;
+    public personalityTrait[] savedBonusTraits;
+    public bool hasCase;
+    public float savedAggression;
 }
 #endregion
 #region Structs
@@ -446,5 +471,36 @@ public struct ErrorData
     [TextArea(3, 6)]
     public string errorFullData;
 }
+#endregion
+#region DataBits
+[System.Serializable]
+public enum locationTrait
+{
+    Dry,
+    Damp,
+    Wet,
+    Soaked,
+    Electric,
+    Grounded,
+    Small,
+    Medium,
+    Large,
+    Huge,
+    Cold,
+    Warm,
+    Hot
+};
+[System.Serializable]
+public enum personalityTrait
+{
+    Vocal,
+    Quiet,
+    Slow,
+    Speedy,
+    Territorial,
+    Hunter,
+    Aggressive,
+    Calm
+};
 #endregion
 #endregion
